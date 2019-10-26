@@ -13,7 +13,7 @@ import {
 import dynamic from 'next/dynamic';
 import '../src/styles/app.css';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import {isMobile} from 'react-device-detect';
 
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false });
 
@@ -31,6 +31,16 @@ class Home extends Component {
       modal: !this.state.modal,
     });
   };
+
+  componentDidMount() {
+    this.renderContent();
+  }
+
+  renderContent = () => {
+    if (isMobile) {
+        alert("This tool is not supported on mobile!")
+    }
+  }
 
   handleScan = (data) => {
     if (data != null && this.state.modal == false) {
