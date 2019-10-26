@@ -4,8 +4,8 @@
   "private": true,
   "main": "server.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npx next dev",
+    "build": "npx next build",
     "start": "npm run build && cross-env NODE_ENV=production node server.js"
   },
   "dependencies": {
