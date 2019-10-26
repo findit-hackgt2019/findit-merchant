@@ -1,16 +1,15 @@
-import exampleData from '../../src/exampleData/search';
+const searchActions = require('../../server/actions/search');
 
 export default async function search(req, res) {
-  const { name } = req.query;
+  const clientId = process.env.NCRCLIENTID;
+  const clientSecret = process.env.NCRCLIENTSECRET;
 
-  const tempData = [...exampleData];
+  let name = req.method === 'POST' ? req.body.name : req.query.name;
 
-  if (name != null) {
-    tempData.push({
-      name,
-      price: 0.0
+  const items = await searchActions.searchItems(clientId, clientSecret, name)
+    .catch(() => {
+      return res.status(400).json({ status: 'Failed' });
     });
-  }
 
-  res.json(tempData);
+  res.json(items);
 }
