@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import Nav from '../src/components/Nav/Nav';
 import '../public/styles/app.css';
 
-const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false });
+const QrReader = dynamic(() => import('react-qr-reader'), {
+  ssr: false
+});
 
-class Home extends Component {
+class Scan extends Component {
   constructor(props) {
     super(props);
 
@@ -34,6 +37,8 @@ class Home extends Component {
           <link rel='icon' href='/favicon.ico'/>
         </Head>
 
+        <Nav/>
+
         <div className='content flexColumn flexCenter'>
           <QrReader
             className='widthSmall'
@@ -48,4 +53,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Scan;
