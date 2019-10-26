@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import '../public/styles/app.css';
+import '../src/styles/app.css';
 
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false });
 

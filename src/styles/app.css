@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
+    Helvetica, sans-serif;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexCenter {
+    justify-content: center;
+    align-items: center;
+}
+
+.widthSmall {
+    width: 30vw;
+}
+
+.widthMedium {
+    width: 50vw;
+}
+
+.widthLarge {
+    width: 75vw;
+}
