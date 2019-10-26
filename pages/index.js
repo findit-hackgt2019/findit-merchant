@@ -10,7 +10,8 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      result: 'No result'
+      result: 'No result',
+      items: [1, 2, 3]
     };
   }
 
@@ -27,6 +28,8 @@ class Home extends Component {
   };
 
   render() {
+    const { items, result } = this.state;
+
     return (
       <div>
         <Head>
@@ -42,6 +45,11 @@ class Home extends Component {
             onScan={this.handleScan}
           />
           <p>{this.state.result}</p>
+          <div className='content flexColumn flexCenter'>
+            {items.map((item) => (
+              <div>{item}</div>
+            ))}
+          </div>
         </div>
       </div>
     );
