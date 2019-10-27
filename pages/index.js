@@ -14,6 +14,7 @@ import dynamic from 'next/dynamic';
 import '../src/styles/app.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {isMobile} from 'react-device-detect';
+import { getOrder } from "../src/actions/mongo";
 
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false });
 
@@ -22,7 +23,9 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      result: [],
+      result: {
+        items: []
+      },
       modal: false,
     };
   }
@@ -42,12 +45,16 @@ class Home extends Component {
     }
   }
 
-  handleScan = (data) => {
-    if (data != null && this.state.modal == false) {
-      this.setState({
-        result: JSON.parse(data),
-        modal: !this.state.modal,
-      });
+  handleScan = async (id) => {
+    if (id != null && this.state.modal === false) {
+      const data = await getOrder(id);
+
+      if (data != null && data.items != null) {
+        this.setState({
+          result: data,
+          modal: !this.state.modal,
+        });
+      }
     }
   };
 
@@ -56,7 +63,7 @@ class Home extends Component {
   };
 
   render() {
-    const { items, result } = this.state;
+    const { result } = this.state;
 
     return (
       <div style={{ backgroundColor: '#2a2a2e', height: '100vh' }} >
@@ -87,7 +94,7 @@ class Home extends Component {
         <Modal isOpen={this.state.modal} >
           <ModalHeader style={{ backgroundColor: '#6934ff', color: '#fff' }} toggle={ this.toggle}><p className="subhead" style={{ margin: '0 auto', fontWeight: '600', fontSize: '28px' }}>Their Order</p></ModalHeader>
           <ModalBody style= {{ padding: '20px', backgroundColor: '#1e1d1c' }}>
-            {result.map(item=>
+            {result.items.map(item =>
                 <div>
                   <ListGroup>
                     <ListGroupItem style={{ margin: '15px' }}>
