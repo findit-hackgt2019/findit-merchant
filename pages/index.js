@@ -61,8 +61,8 @@ class Home extends Component {
     return (
       <div style={{ backgroundColor: '#f9f9f9', height: '100vh' }} >
         <Jumbotron className="header" style={{ backgroundColor: '#54b948' }}>
-          <h1 className="display-5" style={{ fontWeight: '600', fontSize: '54px', color: '#fff' }} >Scanning Unit</h1>
-          <p className="subhead" style={{ fontWeight: '600', fontSize: '28px' }} >Ask Customers to Scan their Order QR Below</p>
+          <h1 className="display-5" style={{ fontWeight: '600', fontSize: '54px', color: '#fff' }}>FindIt Scanner</h1>
+          <p className="subhead" style={{ fontWeight: '600', fontSize: '28px' }} >Ask Customers to Scan their Order QR Below!</p>
         </Jumbotron>
         <Head>
           <title>FindIt</title>
