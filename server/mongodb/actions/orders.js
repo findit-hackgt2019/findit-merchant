@@ -7,16 +7,13 @@ async function getAllOrders() {
 
   let orders = [];
 
-  await Order
-    .find()
-    .sort({ created: -1 })
-    .then((res) => {
-      orders = res;
-      mongoose.connection.close();
-    })
-    .catch(() => {
-      mongoose.connection.close();
-    });
+  try {
+    orders = await Order
+      .find()
+      .sort({created: -1});
+  } finally {
+    mongoose.connection.close();
+  }
 
   return orders;
 }
@@ -52,7 +49,7 @@ async function editOrder(id, newOrder) {
   await mongoDB();
 
   try {
-    Order.findById(id, (err, doc) => {
+    await Order.findById(id, (err, doc) => {
       if (!err) {
         Object.keys(newOrder).forEach((key) => {
           doc[key] = newOrder[key];
@@ -69,16 +66,18 @@ async function editOrder(id, newOrder) {
 async function deleteOrder(id) {
   await mongoDB();
 
-  await Order.findById(id)
-    .then((order) => order.remove())
-    .then(() => {
-      mongoose.connection.close();
-    })
-    .catch(() => {
-      mongoose.connection.close();
-    });
+  try {
+    await Order.findById(id)
+      .then((order) => order.remove());
+  } finally {
+    mongoose.connection.close();
+  }
 }
 
 module.exports = {
-
+  getAllOrders,
+  getOrder,
+  addOrder,
+  editOrder,
+  deleteOrder
 };
