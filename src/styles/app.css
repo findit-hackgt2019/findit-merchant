@@ -8,6 +8,20 @@ body {
     Helvetica, sans-serif;
 }
 
+.qrReader > section > div {
+    border: 50px solid rgba(0, 0, 0, .7) !important;
+    border-radius: 30px;
+    box-shadow: rgba(84, 185, 72, 0.8) 0px 0px 0px 5px inset !important;
+}
+
+.qrReader > section > video {
+    border-radius: 30px;
+}
+
+.header {
+    box-shadow: 0px 0px 9px 3px rgba(41,41,41,.25);
+}
+
 .flexRow {
     display: flex;
     flex-direction: row;
@@ -33,4 +47,8 @@ body {
 
 .widthLarge {
     width: 75vw;
+}
+
+.listItem {
+    font-size: 24px;
 }
