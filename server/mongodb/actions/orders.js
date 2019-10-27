@@ -35,14 +35,15 @@ async function getOrder(id) {
 async function addOrder(order) {
   await mongoDB();
 
+  let newOrder = {};
   try {
-    const newOrder = new Order(order);
+    newOrder = new Order(order);
     await newOrder.save();
   } finally {
     mongoose.connection.close();
   }
 
-  return order;
+  return newOrder;
 }
 
 async function editOrder(id, newOrder) {
