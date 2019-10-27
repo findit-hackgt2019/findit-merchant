@@ -17,9 +17,9 @@ const OrderSchema = new Schema({
 let Order;
 
 if (mongoose.models.Order) {
-  Order = mongoose.model('Application');
+  Order = mongoose.model('Order');
 } else {
-  Order = mongoose.model('Application', OrderSchema);
+  Order = mongoose.model('Order', OrderSchema);
 }
 
 module.exports = Order;
