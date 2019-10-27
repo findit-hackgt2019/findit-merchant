@@ -1,4 +1,4 @@
-const searchActions = require('../../server/actions/search');
+const searchActions = require('../../server/ncrAPI/search');
 
 export default async function getItems(req, res) {
   const clientId = process.env.NCRCLIENTID;
