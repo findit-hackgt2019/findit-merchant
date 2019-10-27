@@ -65,13 +65,20 @@ class Home extends Component {
   render() {
     const { result } = this.state;
 
+    let sum = 0;
+    if (result != null && result.items != null) {
+      result.items.forEach((item) => {
+        sum += item.quantity * item.price;
+      })
+    }
+
     return (
       <div style={{ backgroundColor: '#2a2a2e', height: '100vh' }} >
         <Jumbotron className="header" style={{ backgroundColor: '#6934ff' }}>
           <div style={{display:"flex", alignItems:"center"}}>
             <img src="/static/icon.png" style={{height:"15vh"}}/>
             <div style={{ marginLeft:32 }}>
-              <h1 className="display-5" style={{ fontWeight: '600', fontSize: '54px', color: '#fff' }}>FindIt Scanner</h1>
+              <h1 className="display-5" style={{ fontWeight: '600', fontSize: '54px', color: '#fff' }}>FindIt Scan</h1>
               <p className="subhead" style={{ fontWeight: '600', fontSize: '28px' }} >Ask Customers to Scan their Order QR Below!</p>
             </div>
           </div>
@@ -92,7 +99,14 @@ class Home extends Component {
 
         </div>
         <Modal isOpen={this.state.modal} >
-          <ModalHeader style={{ backgroundColor: '#6934ff', color: '#fff' }} toggle={ this.toggle}><p className="subhead" style={{ margin: '0 auto', fontWeight: '600', fontSize: '28px' }}>Their Order</p></ModalHeader>
+          <ModalHeader
+            style={{ backgroundColor: '#6934ff', color: '#fff' }}
+            toggle={ this.toggle}
+          >
+            <p className="subhead" style={{ margin: '0 auto', fontWeight: '600', fontSize: '28px' }}>
+              Their Order - ${sum.toFixed(2)}
+            </p>
+          </ModalHeader>
           <ModalBody style= {{ padding: '20px', backgroundColor: '#1e1d1c' }}>
             {result.items.map(item =>
                 <div>

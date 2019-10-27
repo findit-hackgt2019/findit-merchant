@@ -4,11 +4,11 @@ export default async function getItems(req, res) {
   const clientId = process.env.NCRCLIENTID;
   const clientSecret = process.env.NCRCLIENTSECRET;
 
-  const items =
-    await searchActions.getAllItems(clientId, clientSecret)
+  await searchActions.getAllItems(clientId, clientSecret)
+      .then((items) => {
+        res.json(items);
+      })
       .catch(() => {
-        return res.status(400).json({ status: 'Failed' });
+        res.status(400).json({ status: 'Failed' });
       });
-
-  res.json(items);
 }
